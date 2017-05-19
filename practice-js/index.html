@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+        <script type="text/javascript">
+
+            // -----------------------------------------------------------------------------
+            // Getters & Setters
+            // -----------------------------------------------------------------------------
+            var obj = {
+                a: 7,
+                get b() {
+                    return this.a + 1;
+                },
+                set b(x) {
+                    this.a = x / 2;
+                }
+            }
+
+            console.log(obj.a);
+            console.log(obj.b);
+            obj.b = 50;
+            console.log(obj.b);
+
+
+            var obj2 = {
+                firstName: 'Chris',
+                lastName: 'Morse',
+                get fullName() {
+                    return this.firstName + ' ' + this.lastName;
+                },
+                set fullName(value) {
+                    var fullNameArray = value.split(' ');
+                    this.firstName = fullNameArray[0];
+                    this.lastName = fullNameArray[1];
+                }
+            }
+
+            console.log(obj2.firstName);
+            console.log(obj2.lastName);
+            console.log(obj2.fullName);
+            obj2.fullName = "Jeff Sterling";
+            console.log(obj2.fullName);
+
+
+            // -----------------------------------------------------------------------------
+            // Object.keys
+            // -----------------------------------------------------------------------------
+            var dictionary = {
+                "yolo": "you only live once",
+                "gg": "good game",
+                "swag": "sup"
+            }
+
+            var keys = Object.keys(dictionary);
+
+            var upperKeys = keys.map(function (key) {
+                return key.toUpperCase();
+            });
+
+            console.log(upperKeys);
+
+
+            // -----------------------------------------------------------------------------
+            // Map
+            //
+            //  Use it when: You want to translate/map all elements in an array to another set of values.
+            // -----------------------------------------------------------------------------
+            var obj = {
+                "one": 1,
+                "two": 2,
+                "three": 3,
+                "four": 4
+            }
+
+            var keys = Object.keys(obj);
+
+            var timesTwo = keys.map(function (key) {
+                return obj[key] * 2;
+            })
+
+            console.log(timesTwo);
+
+
+            // -----------------------------------------------------------------------------
+            // Filter
+            //
+            //  Use it when: You want to remove unwanted elements based on a condition.
+            // -----------------------------------------------------------------------------
+
+            var even = keys.filter(function (elem) {   // can also have access to i, array itself.  
+                return obj[elem] % 2 === 0;
+            });
+
+            console.log(even);
+
+
+
+            // -----------------------------------------------------------------------------
+            // Reduce
+            //
+            //   Use it when: You want to find a cumulative or concatenated value based on elements across the array.
+            // -----------------------------------------------------------------------------
+
+            var sum = keys.reduce(function (prevVal, elem) {
+                return prevVal + obj[elem];
+            }, 0);
+
+            console.log(sum);
+
+
+            // -----------------------------------------------------------------------------
+            // Array.forEach
+            // -----------------------------------------------------------------------------
+
+            keys.forEach(function(key) {
+                console.log('My number is ' + key);
+            });
+
+
+
+
+
+
+
+            // -----------------------------------------------------------------------------
+            // Arrow functions
+            //
+            //   more straight forward to maintain parent object scope in a callback or method.   (vs using _this as a copy of this)
+            // -----------------------------------------------------------------------------
+
+            var object = {
+                collection: ['patrick', 'scott', 'mike'],
+                domain: 'angularclass.com',
+                method: function method() {
+                    var mapEmail = function (item) {
+                        return item + '@' + this.domain;
+                    }.bind(this)
+                    return this.collection.map(mapEmail)
+                }
+            };
+
+            console.log(object.method());
+
+            // same thing but with arrow functions  -- no need to bind.
+
+            var object2 = {
+                collection: ['patrick', 'scott', 'mike'],
+                domain: 'angularclass.com',
+                method: function method() {
+                    return this.collection.map(item => {
+                        return `${ item}@${ this.domain}`;     //back tick is string interpolation.
+                    });
+                }
+            };
+
+
+            console.log(object2.method());
+
+
+            // -----------------------------------------------------------------------------
+            // Classes
+            // -----------------------------------------------------------------------------
+
+            //ES5
+            var App = function() {
+                console.log('hello');
+            }
+
+            App.prototype.method = function() {
+                console.log('hello from method');
+            }
+
+            var app = new App();
+            app.method();
+
+
+            //ES 2015
+            class AppES2015 {
+                constructor() {
+                    console.log('hello ES2015');
+                }
+                method() {
+                    console.log('method called from 2015');
+                }
+            }
+
+           
+            var appES2015 = new AppES2015();
+            appES2015.method();
+
+
+
+
+
+
+            // -----------------------------------------------------------------------------
+            // Promises
+            // -----------------------------------------------------------------------------
+
+ 
+
+
+            // -----------------------------------------------------------------------------
+            // Observables
+            // -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+
+
+
+</body>
+</html>
