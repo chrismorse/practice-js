@@ -57,9 +57,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\index.css" />
+    <Content Include="app\index.html" />
+    <Content Include="app\index.js" />
     <Content Include="index.html" />
     <Content Include="react.html" />
     <Content Include="Web.config" />
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
