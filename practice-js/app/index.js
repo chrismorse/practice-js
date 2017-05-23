@@ -75,12 +75,20 @@ ReactDOM.render(
 
 //-----------------------------------------------------------------------------------------
 // Avatar
+//  - PropTypes
 //-----------------------------------------------------------------------------------------
+
+var PropTypes = require('prop-types');
+
 
 class Avatar extends React.Component {
     render() {
         return (
-          <img src={this.props.img} />
+          <img 
+            src={this.props.img} 
+            alt='Avatar'
+            style={{width:100, height:100}}
+            />
     )
   }
 }
@@ -105,20 +113,149 @@ class Badge extends React.Component {
     render() {
         return (
           <div>
-            <Avatar img={this.props.user.img}/>
-            <Label name={this.props.user.name} />
-            <ScreenName username={this.props.user.username}/>
+            <Avatar img={this.props.img}/>
+            <Label name={this.props.name} />
+            <ScreenName username={this.props.username}/>
           </div>
     )
   }
 }
 
+Badge.propTypes = {
+    img: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired
+}
+
+
 ReactDOM.render(
-  <Badge user={{
-name: 'Chris Morse',
-img: 'https://avatars3.githubusercontent.com/u/333303?v=3&s=460',
-username: 'chrismorse'
-}} />,
+  <Badge 
+    name='Chris Morse'
+    img='https://avatars3.githubusercontent.com/u/333303?v=3&s=460'
+    username='chrismorse'
+     />,
 document.getElementById('app')
 );
+
+
+
+//-----------------------------------------------------------------------------------------
+// this keyword + managing & updating state.
+//-----------------------------------------------------------------------------------------
+
+// Implicit Binding
+// - when function is invoked.  Look to the left of the dot at run time
+//-----------------------------------------------------------------------------------------
+
+var me = {
+    name: 'Chris',
+    age: 25, 
+    sayName: function() {
+        console.log(this.name);
+    }
+};
+
+var you = {
+    name: 'Tyler',
+    age: 25, 
+}
+
+var sayNameMixin = function(obj) {
+    obj.sayName = function() {
+        console.log(this.name);
+    };
+}
+
+me.sayName();  //Chris
+
+sayNameMixin(me);
+me.sayName();  //Chris
+
+sayNameMixin(you);
+you.sayName();  //Tyler
+
+var Person = function(name,age) {
+    return {
+        name: name,
+        age: age,
+        sayName: function() {
+            console.log(this.name);
+        },
+        mother: {
+            name: 'Stacey',
+            sayName: function() {
+                console.log(this.name);
+            }
+        }
+    }
+}
+
+var jim = Person('jim', 42);
+jim.sayName();  //jim
+jim.mother.sayName();  //Stacey
+
+
+//-----------------------------------------------------------------------------------------
+// Explicit Binding
+//-----------------------------------------------------------------------------------------
+
+var sayName = function() {
+    console.log('My name is ' + this.name);
+}
+
+var stacey = {
+    name: 'Stacey',
+    age: 34
+}
+
+sayName.call(stacey);   //explicit binding with call
+
+var sayName2 = function(lang1, lang2, lang3) {
+    console.log('My name is ' + this.name + ' and I know ' + lang1 + ', ' + lang2 + ', ' + lang3);
+}
+
+var languages = ['C#', 'C++', 'Python'];
+
+sayName2.call(stacey, languages[0], languages[1], languages[2]);   //first argument is context, every other argument is past to function as a normal object
+sayName2.apply(stacey, languages);   //same thing as above.. but it will automatically split out the array of arguments for you.
+
+var newfunction = sayName2.bind(stacey, languages[0], languages[1], languages[2]);   //returns a function instead of binding.
+console.log('---------');
+newfunction();
+
+
+//-----------------------------------------------------------------------------------------
+// new and window binding
+//-----------------------------------------------------------------------------------------
+
+// new binding
+
+var Animal = function(color, name, type) {
+    //this = {}   - since we are using new keyword.  Javascript with create a new object
+    this.color = color;
+    this.name = name;
+    this.type = type;
+};
+
+var zebra = new Animal('black and white', 'Zorro', 'Zebra');   // new keyword.
+console.log(zebra.color);
+
+
+// window binding
+var sayAge = function() {
+    console.log(this.age);
+};
+
+
+sayAge();   //since not using call,bind, etc.. .or new keyword.  And nothing to the left of dot.   It defaults to the window object.  --> undefined
+
+window.age = 35;
+sayAge();
+
+// must be calling 'use script' somewhere?  Since this doesn't work.
+
+
+
+
+
 
