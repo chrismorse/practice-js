@@ -25,7 +25,7 @@ class Popular extends React.Component {
                     return (
                         <li
                             style={lang === this.state.selectedLanguage ? {color: '#d0021b'} : null}
-                            onClick={this.updateLanguage.bind(null, lang)}   //this keyword doesn't matter.. taken care of above.  so pass null (or unbound).   Pass specific language to function.  Remember this is returning a function that will be invoked when clicked on.
+                            onClick={this.updateLanguage.bind(null, lang)}   //'this' keyword doesn't matter here... taken care of above.  so pass null (or unbound).   Pass specific language to function.  Remember this is returning a function that will be invoked when clicked on.
                             key={lang}>
                             {lang}
                         </li>
