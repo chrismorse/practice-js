@@ -1,28 +1,27 @@
 ﻿var React = require('react');
 var PropTypes = require('prop-types');
 
-class SelectedLanguage extends React.Component {
-    render() {
-        var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python', 'R', 'C#' ];
+function SelectLanguage(props) {
+    var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python', 'R', 'C#' ];
 
-        return (
+    return(
             <ul className='languages'>
                 {languages.map(function(lang) {
                     return (
                         <li
-                            style={lang === this.props.selectedLanguage ? {color: '#d0021b'} : null}
-                            onClick={this.props.onSelect.bind(null, lang)}   //'this' keyword doesn't matter here... taken care of above.  so pass null (or unbound).   Pass specific language to function.  Remember this is returning a function that will be invoked when clicked on.
+                            style={lang === props.selectedLanguage ? {color: '#d0021b'} : null}
+                            onClick={props.onSelect.bind(null, lang)}   //'this' keyword doesn't matter here... taken care of above.  so pass null (or unbound).   Pass specific language to function.  Remember this is returning a function that will be invoked when clicked on.
                             key={lang}>
                             {lang}
                         </li>
                     )   // 'this' below... you could also use an arrow function (ES6) and then you could lose 'this' at the end.   Arrow functions make it so the context is the same as outside the functions.
                 }, this)}     
             </ul>
-        )
-    }
+    )
 }
 
-SelectedLanguage.propTypes = {
+
+SelectLanguage.propTypes = {
     selectedLanguage: PropTypes.string.isRequired,
     onSelect: PropTypes.func.isRequired
 }
@@ -49,7 +48,7 @@ class Popular extends React.Component {
     render() {
         return (
             <div>
-                <SelectedLanguage 
+                <SelectLanguage 
                     selectedLanguage={this.state.selectedLanguage}
                     onSelect={this.updateLanguage}
                 />
