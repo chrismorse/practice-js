@@ -330,6 +330,40 @@
 
 
 
+            //-----------------------------------------------------------------------------------------
+            // typeof
+            //-----------------------------------------------------------------------------------------
+
+            var testNull = null;
+            console.log("null is typeof " + typeof(testNull));  //hmm.. so you need to check whether its null not just type
+
+            var testObject = {"asdf": 2};
+            console.log("object is typeof " + typeof(testObject));
+
+            var testArray = [1,2,3,4];
+            console.log("array is typeof " + typeof(testArray));
+
+            console.log("37 is typeof " + typeof(37));
+
+            console.log("true is typeof " + typeof(true));
+
+            console.log("'s' is typeof " + typeof('s'));
+            
+            (function(){
+                var a = b = 3;
+            })();
+            // same as 
+            //    b = 3;
+            //    var a = b;
+
+            console.log(typeof(a));  //not defined - since using var inside function scope
+            console.log(b);   // is a global since not preceded by var, so is still in scope and equal 3
+
+
+
+
+
+
 
 
 
