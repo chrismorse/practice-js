@@ -1,5 +1,0 @@
-C:\Users\cmorse\Documents\GitHub\practice-js\practice-js\bin\practice-js.dll
-C:\Users\cmorse\Documents\GitHub\practice-js\practice-js\bin\practice-js.pdb
-C:\Users\cmorse\Documents\GitHub\practice-js\practice-js\obj\Debug\practice-js.csprojResolveAssemblyReference.cache
-C:\Users\cmorse\Documents\GitHub\practice-js\practice-js\obj\Debug\practice-js.dll
-C:\Users\cmorse\Documents\GitHub\practice-js\practice-js\obj\Debug\practice-js.pdb
