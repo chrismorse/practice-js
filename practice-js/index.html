@@ -361,11 +361,79 @@
 
 
 
+            //-----------------------------------------------------------------------------------------
+            // is palindrome
+            //-----------------------------------------------------------------------------------------
+
+            function isPalindrome(str) {
+                for (var i = 0, j=str.length - 1; i < j; i++, j--) {
+                    if (str[i] !== str[j]) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            console.log("racecar is palindrome? " + isPalindrome("racedecar"));
+            console.log("raccar is palindrome? " + isPalindrome("raccar"));
+            console.log("raccsar is palindrome? " + isPalindrome("raccsar"));
 
 
 
 
+            //-----------------------------------------------------------------------------------------
+            // sum method that works with 2 diff calls.
+            //-----------------------------------------------------------------------------------------
 
+            function newSum(x,y) {
+                if (y !== undefined) {
+                    return x + y;
+                } else {
+                    return function(y) {
+                        return x + y;
+                    }
+                }
+                return true;
+            }
+
+
+            console.log(newSum(2,3));   // Outputs 5
+            console.log(newSum(2)(3));  // Outputs 5
+
+
+
+            //-----------------------------------------------------------------------------------------
+            // sum method that works with 2 diff calls.
+            //-----------------------------------------------------------------------------------------
+            for (var i = 0; i < 5; i++) {
+                var btn = document.createElement('button');
+                btn.appendChild(document.createTextNode('Button ' + i));
+                btn.addEventListener('click', function(){ console.log(i); });
+                document.body.appendChild(btn);
+            }
+
+
+
+            //-----------------------------------------------------------------------------------------
+            // array problem
+            //-----------------------------------------------------------------------------------------
+            var arr1 = "john".split('');
+            var arr2 = arr1.reverse();
+            var arr3 = "jones".split('');
+            arr2.push(arr3);
+            console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1));
+            console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1));
+
+            console.log(arr1);
+            console.log(arr2);
+            console.log(arr3);
+
+
+            function multiply(a, b) {
+            return a * b;
+            }
+
+            console.log(multiply(2,3));
 
 
 
