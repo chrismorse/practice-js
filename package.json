@@ -1,0 +1,25 @@
+{
+  "name": "practice-js",
+  "version": "1.0.0",
+  "description": "practicing js and mocha/chai",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrismorse/practice-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrismorse/practice-js/issues"
+  },
+  "homepage": "https://github.com/chrismorse/practice-js#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0",
+    "request": "^2.81.0",
+    "should": "^11.2.1"
+  }
+}
